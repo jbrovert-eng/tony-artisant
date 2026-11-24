@@ -1,0 +1,197 @@
+/* assets/css/style.css - Styles personnalisés Tony Paysagiste */
+:root {
+  --forest-green: #1B4332;
+  --forest-dark: #0f291e;
+  --sage-green: #2D6A4F;
+  --sage-light: #52B788;
+  --amber-call: #D97706;
+  --amber-hover: #B45309;
+  --green-call: #16A34A;
+  --off-white: #F8F9FA;
+  --charcoal: #1F2937;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: var(--off-white);
+  color: var(--charcoal);
+  padding-bottom: 72px; /* Dégagement pour la barre mobile flottante */
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* Header Sticky */
+header.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+}
+
+/* Before / After Slider */
+.ba-slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  touch-action: pan-y;
+  aspect-ratio: 4 / 3;
+  background-color: #e5e7eb;
+}
+
+.ba-slider-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.ba-before-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.ba-before-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Ligne et poignée de contrôle */
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50%);
+  z-index: 20;
+  cursor: ew-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ba-handle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1B4332;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.ba-handle-btn:hover {
+  transform: scale(1.1);
+  background: #2D6A4F;
+}
+
+/* Badges Avant / Après */
+.ba-badge {
+  position: absolute;
+  bottom: 1rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.825rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 9999px;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.ba-badge-before {
+  left: 1rem;
+}
+
+.ba-badge-after {
+  right: 1rem;
+}
+
+/* Barre flottante mobile */
+.mobile-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-bar {
+    display: none;
+  }
+}
+
+/* Animations et détails d'interaction */
+.pulse-call {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(217, 119, 6, 0);
+  }
+}
+
+/* FAQ Accordion */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-item.active .faq-content {
+  max-height: 1000px;
+  transition: max-height 0.35s ease-in-out;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
