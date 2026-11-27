@@ -315,8 +315,8 @@
         <!-- Visuel Chantiers Réels -->
         <div class="lg:col-span-5">
           <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
-            <img src="assets/images/elagage1.jpg" alt="Intervention d'élagage en hauteur"
-              class="w-full h-80 sm:h-96 object-cover" loading="lazy">
+            <img src="assets/images/elagage-apres.jpg" alt="Intervention d'élagage réalisée par Tony"
+              class="w-full h-80 sm:h-96 object-cover object-top" loading="lazy">
           </div>
         </div>
 
@@ -514,26 +514,57 @@
   <!-- COMPARATEUR AVANT / APRÈS (ÉPURÉ SANS BOUTON SUPERFLU) -->
   <section id="avant-apres" class="py-16 md:py-24 bg-white border-y border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-semibold uppercase tracking-wider text-sage-600 bg-emerald-50 px-3 py-1 rounded-full">Exemples de Réalisations</span>
+        <h2 class="text-3xl font-extrabold text-forest-900 mt-2 mb-3">
+          Nos Chantiers en Avant / Après
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base">
+          Faites glisser les curseurs pour constater le résultat réel des interventions en élagage et en abattage.
+        </p>
+      </div>
 
-        <div class="lg:col-span-5 space-y-4">
-          <span
-            class="text-xs font-semibold uppercase tracking-wider text-sage-600 bg-emerald-50 px-3 py-1 rounded-full">Exemple
-            de Réalisation</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-forest-900 leading-tight">
-            Abattage et Déssouchage d'un Grand Résineux
-          </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-
-          <div class="space-y-2 bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs sm:text-sm text-gray-700">
-            <p><strong>Avant :</strong> Un grand résineux encombrant qui masquait la lumière et menaçait les toitures.
+        <!-- Projet 1 : Élagage -->
+        <div class="bg-gray-50 p-6 sm:p-7 rounded-3xl border border-gray-200 flex flex-col justify-between">
+          <div class="mb-5">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">Élagage</span>
+            <h3 class="text-xl font-bold text-forest-900 mt-2 mb-1.5">Élagage & Allègement de Saule</h3>
+            <p class="text-xs text-gray-600">
+              Restructuration et allègement des branches pour dégager la lumière tout en préservant la vigueur de l'arbre.
             </p>
-            <p><strong>Après :</strong> Arbre retiré, souche invisible et pelouse immédiatement réutilisable.</p>
           </div>
+
+          <div class="ba-slider-container max-w-xs sm:max-w-sm mx-auto shadow-xl" style="aspect-ratio: 352 / 724;">
+            <img src="assets/images/elagage-apres.jpg" alt="Après : Saule allégé et restructuré" loading="lazy">
+            <span class="ba-badge ba-badge-after">Après</span>
+
+            <div class="ba-before-wrapper">
+              <img src="assets/images/elagage-avant.jpg" alt="Avant : Saule avec ramure très dense" loading="lazy">
+              <span class="ba-badge ba-badge-before">Avant</span>
+            </div>
+
+            <div class="ba-handle" aria-label="Curseur glissant avant-après">
+              <div class="ba-handle-btn">⇄</div>
+            </div>
+          </div>
+          <p class="text-center text-xs text-gray-500 mt-3 italic">
+            Glissez pour comparer l'élagage
+          </p>
         </div>
 
-        <div class="lg:col-span-7">
-          <div class="ba-slider-container">
+        <!-- Projet 2 : Abattage & Déssouchage -->
+        <div class="bg-gray-50 p-6 sm:p-7 rounded-3xl border border-gray-200 flex flex-col justify-between">
+          <div class="mb-5">
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Abattage & Rognage</span>
+            <h3 class="text-xl font-bold text-forest-900 mt-2 mb-1.5">Abattage & Déssouchage de Sapin</h3>
+            <p class="text-xs text-gray-600">
+              Suppression complète d'un grand résineux menaçant et arasement de la souche sous terre pour une pelouse propre.
+            </p>
+          </div>
+
+          <div class="ba-slider-container max-w-md mx-auto shadow-xl" style="aspect-ratio: 4 / 3;">
             <img src="assets/images/apres.jpg" alt="Après : Arbre abattu et terrain nettoyé" loading="lazy">
             <span class="ba-badge ba-badge-after">Après</span>
 
@@ -546,8 +577,8 @@
               <div class="ba-handle-btn">⇄</div>
             </div>
           </div>
-          <p class="text-center text-xs text-gray-500 mt-2.5">
-            Glissez le curseur central pour comparer Avant et Après
+          <p class="text-center text-xs text-gray-500 mt-3 italic">
+            Glissez pour comparer l'abattage
           </p>
         </div>
 
