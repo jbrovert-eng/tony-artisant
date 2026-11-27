@@ -19,13 +19,6 @@ html {
 body {
   background-color: var(--off-white);
   color: var(--charcoal);
-  padding-bottom: 72px; /* Dégagement pour la barre mobile flottante */
-}
-
-@media (min-width: 768px) {
-  body {
-    padding-bottom: 0;
-  }
 }
 
 /* Header Sticky */
@@ -147,24 +140,6 @@ header.scrolled {
   right: 1rem;
 }
 
-/* Barre flottante mobile */
-.mobile-bottom-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 45;
-  background: #ffffff;
-  border-top: 1px solid #e5e7eb;
-  padding: 0.65rem 1rem;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
-}
-
-@media (min-width: 768px) {
-  .mobile-bottom-bar {
-    display: none;
-  }
-}
 
 /* Animations et détails d'interaction */
 .pulse-call {
