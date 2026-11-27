@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
       handle.style.left = percentage + '%';
     };
 
-    // Souris
     container.addEventListener('mousedown', function (e) {
       isDown = true;
       setPosition(e.clientX);
@@ -74,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
       setPosition(e.clientX);
     });
 
-    // Touch pour mobile/tablette
     container.addEventListener('touchstart', function (e) {
       isDown = true;
       if (e.touches[0]) setPosition(e.touches[0].clientX);
@@ -90,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   });
 
-  // 4. FORMULAIRE DEVIS DIRECT SMS / WHATSAPP (100% JS SANS BACKEND)
+  // 4. FORMULAIRE DEVIS DIRECT (SMS / WHATSAPP ÉPURÉ)
   const quoteForms = document.querySelectorAll('.quote-form-handler');
   
   quoteForms.forEach(function (form) {
@@ -98,27 +96,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const nameInput = form.querySelector('[name="client_name"]');
     const phoneInput = form.querySelector('[name="client_phone"]');
     const messageInput = form.querySelector('[name="client_message"]');
+    const cityInput = form.querySelector('[name="client_city"]');
     const statusMsg = form.querySelector('.quote-status-msg');
 
     const smsBtn = form.querySelector('.btn-send-sms');
     const waBtn = form.querySelector('.btn-send-wa');
     const copyBtn = form.querySelector('.btn-copy-msg');
 
-    // Détection iOS pour le séparateur SMS (&body= vs ?body=)
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     function buildMessage() {
-      const service = (serviceInput && serviceInput.value.trim()) || 'Demande générale';
+      const service = (serviceInput && serviceInput.value.trim()) || 'Demande de devis';
       const name = (nameInput && nameInput.value.trim()) || 'Non renseigné';
       const phone = (phoneInput && phoneInput.value.trim()) || '';
+      const city = (cityInput && cityInput.value.trim()) || '';
       const details = (messageInput && messageInput.value.trim()) || 'Pas de précision supplémentaire';
 
-      return `Bonjour Tony, je souhaite un devis gratuit pour : ${service}. Nom : ${name}. Mon tél : ${phone}. Détails : ${details}`;
+      let msg = `Bonjour, je souhaite un devis gratuit pour : ${service}.\nNom : ${name}\nTéléphone : ${phone}`;
+      if (city) msg += `\nCommune : ${city}`;
+      msg += `\nDétails : ${details}`;
+      return msg;
     }
 
     function validatePhone() {
       if (!phoneInput || !phoneInput.value.trim()) {
-        showStatus('Veuillez renseigner votre numéro de téléphone pour être rappelé.', 'error');
+        showStatus('Veuillez renseigner votre numéro de téléphone pour que nous puissions vous recontacter.', 'error');
         if (phoneInput) phoneInput.focus();
         return false;
       }
@@ -129,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!statusMsg) return;
       statusMsg.textContent = text;
       statusMsg.className = 'quote-status-msg text-sm p-3 rounded-lg mt-3 ' + 
-        (type === 'error' ? 'bg-red-100 text-red-800 border border-red-200' : 'bg-green-100 text-green-800 border border-green-200');
+        (type === 'error' ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-emerald-50 text-emerald-800 border border-emerald-200');
       statusMsg.classList.remove('hidden');
     }
 
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const separator = isIOS ? '&' : '?';
         const smsUrl = `sms:+33641439214${separator}body=${encodeURIComponent(msg)}`;
         window.location.href = smsUrl;
-        showStatus('Ouverture de votre application SMS en cours...', 'success');
+        showStatus('Votre application SMS va s\'ouvrir avec votre demande pré-remplie...', 'success');
       });
     }
 
@@ -164,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(msg).then(() => {
-            showStatus('Message copié ! Vous pouvez le coller par SMS au 06 41 43 92 14.', 'success');
+            showStatus('Message copié dans le presse-papier !', 'success');
           }).catch(() => {
             fallbackCopy(msg);
           });
@@ -183,9 +185,9 @@ document.addEventListener('DOMContentLoaded', function () {
       textarea.select();
       try {
         document.execCommand('copy');
-        showStatus('Message copié ! Vous pouvez le coller par SMS au 06 41 43 92 14.', 'success');
+        showStatus('Message copié dans le presse-papier !', 'success');
       } catch (err) {
-        showStatus('Numéro Tony : 06 41 43 92 14. Veuillez envoyer votre message.', 'info');
+        showStatus('Numéro de contact : 06 41 43 92 14', 'info');
       }
       document.body.removeChild(textarea);
     }
@@ -198,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (questionBtn) {
       questionBtn.addEventListener('click', function () {
         const isOpen = item.classList.contains('active');
-        // Fermer les autres dans le même conteneur si désiré, ou permettre multi-ouvert
         faqItems.forEach(other => {
           if (other !== item) other.classList.remove('active');
         });
